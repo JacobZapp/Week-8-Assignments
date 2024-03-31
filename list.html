@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <title>Hello Vue Forms</title>
+
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+</head>
+
+<body>
+<div id='app'>
+
+    <h1> Task list</h1>
+
+    <h2>Enter New Task:</h2>
+    <label>Please enter your to-do task: </label>
+<!--  v-model is helping us use the new task so that what the user inputs will go onto the list  -->
+    <input v-model="newTask">
+    <br>
+    <button v-on:click="addTask">Click to Add Task to Existing List</button>
+    <ul>
+        <li v-for="task in taskList">
+            {{ task }}
+        </li>
+    </ul>
+
+</div>
+
+<script>
+
+    const { createApp, ref } = Vue
+
+
+    createApp ({
+        setup() {
+
+            // tasklist is the base list we are starting with, new task is the input and label for the usser to add a task of their own
+            const taskList = ref([ 'Water Plants', 'Pay Cellphone Bill', 'Wash Floor'])
+            const newTask = ref('')
+
+            // This function below is what is making the update to the list for the user to see
+            function addTask() {
+                //add newTask to the taskList
+                if (newTask.value) {
+                    taskList.value.push(newTask.value)
+                    newTask.value = ''
+                }
+            }
+
+
+            return {
+                taskList,
+                newTask,
+                addTask
+            }
+        }
+    }).mount('#app')
+
+
+
+
+</script>
+</body>
+</html>

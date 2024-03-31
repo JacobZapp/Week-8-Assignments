@@ -1,0 +1,4 @@
+What does this Vue warning message mean? Can you safely ignore it? What causes it, and how do you fix it?  Write an answer in your own words. 
+
+
+That warning message is letting you know that you most likely forgot to put the function or variable into the return part of the script. If you do not, then the function may be working, but the user of the interface is not seeing anything.
